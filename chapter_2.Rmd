@@ -3,3 +3,71 @@ title: "Chapter 2"
 author: "Verena und Maximilian Held"
 date: "1/6/2019"
 ---
+
+1. Suppose the globe tossing data had turned out to be 8 water in 15 tosses.
+Construct the posterior distribution, using grid approximation.
+Use the same flat prior as before.
+
+```{r build-grid-approximation}
+options(scipen=999)
+
+# define grid
+grid_res <- 200
+p_grid <- seq(from = 0, to = 1, length.out = grid_res)
+
+# define prior
+prior <- rep(x = 1, times = grid_res)
+prior <- prior/sum(prior)
+
+# compute likelihood
+likelihood <- dbinom(x = 8, size = 15, prob = p_grid)
+
+# compute product of likelihood and prior
+unstd.posterior <- likelihood * prior
+
+# standardize the posterior, so it sums to 1
+posterior <- unstd.posterior / sum(unstd.posterior)
+
+plot( p_grid , posterior , type="b" ,
+    xlab="probability of water" , ylab="posterior probability" )
+mtext(paste(grid_res, "points"))
+
+```
+
+
+2. Start over in 1, but now use a prior that is zero below p = 0.5 and a constant above p = 0.5.
+This corresponds to prior information that a majority of the Earth’s surface is water.
+What difference does the better prior make?
+If it helps, compare posterior distributions (using both priors) to the true value p = 0.7.
+
+```{r}
+# define prior
+prior <- ifelse(test = p_grid < 0.5, yes = 0, no = 1)
+prior <- prior/sum(prior)
+plot(p_grid, prior)
+
+# compute likelihood
+likelihood <- dbinom(x = 8, size = 15, prob = p_grid)
+plot(p_grid, likelihood)
+# compute product of likelihood and prior
+unstd.posterior <- likelihood * prior
+
+# standardize the posterior, so it sums to 1
+posterior <- unstd.posterior / sum(unstd.posterior)
+
+plot( p_grid , posterior , type="b" ,
+    xlab="probability of water" , ylab="posterior probability" )
+mtext(paste(grid_res, "points"))
+
+```
+
+
+3. Suppose you want to estimate the Earth’s proportion of water very precisely.
+Specifically, you want the 99% percentile interval of the posterior distribution of p to be only 0.05 wide.
+This means the distance between the upper and lower bound of the interval should be 0.05.
+How many times will you have to toss the globe to do this?
+
+```{r}
+
+```
+

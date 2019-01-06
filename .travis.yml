@@ -2,8 +2,10 @@ language: r
 warnings_are_errors: false
 cache:
   packages: true
+before_install:
+  - bash configure.sh
 script:
-- Rscript -e "rmarkdown::render_site()"
+  - Rscript -e "rmarkdown::render_site()"
 deploy:
   - provider: pages
     skip_cleanup: true

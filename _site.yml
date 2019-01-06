@@ -1,0 +1,16 @@
+name: "statistical rethinking exercises"
+description: |
+  Exercises for Richard McElreath's "Statistical Rethinking"
+navbar:
+  title: "rethinking exercises"
+  left:
+    - text: "Home"
+      href: index.html
+    - text: "Chapter 2"
+      href: chapter_2.html
+  right:
+    - icon: fa-github
+      href: https://github.com/maxheld83/rethinking-stats-exc
+output:
+  bookdown::html_document2:
+    theme: cosmo

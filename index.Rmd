@@ -1,0 +1,4 @@
+# About {-}
+
+```{r, child="README.md"}
+```

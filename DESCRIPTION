@@ -1,0 +1,9 @@
+Package: placeholder
+Type: Book
+Title: Does not matter.
+Version: 0.0.1
+Imports: 
+  rmarkdown,
+  rethinking
+Remotes:
+  rmcelreath/rethinking@Experimental
